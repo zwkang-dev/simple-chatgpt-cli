@@ -30,7 +30,7 @@ ask-chatgpt ask <your_question>
 
 ## Q&A
 
-if you want to more feature, please create issue
+if you want to have more feature, please create issue to ask for
 
 ## LICENSE
 
