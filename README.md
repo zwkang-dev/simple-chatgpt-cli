@@ -1,8 +1,6 @@
 # @zwkang-dev/simple-chatgpt-cli
 
-> description:
-
-simple way to use openai api in cli, just ask question and get answer
+> simple way to use openai api in cli, just ask question and get answer
 
 ## Features
 
