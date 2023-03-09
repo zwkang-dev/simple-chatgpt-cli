@@ -1,6 +1,6 @@
 {
   "name": "@zwkang-dev/simple-chatgpt-cli",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "packageManager": "pnpm@7.9.0",
   "description": "> description:",
   "publishConfig": {
