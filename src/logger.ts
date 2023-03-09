@@ -14,6 +14,9 @@ const logger = {
   success: (str: string) => {
     console.log(green(str));
   },
+  table: <T>(str: Array<T>) => {
+    console.table(str);
+  },
 
   yellow,
 };

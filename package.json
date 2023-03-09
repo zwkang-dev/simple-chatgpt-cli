@@ -74,11 +74,11 @@
     "@types/node": "^18.14.2",
     "@types/update-notifier": "^6.0.2",
     "cac": "^6.7.14",
-    "chatgpt": "^4.7.2",
     "colorette": "^2.0.19",
     "debug": "^4.3.4",
     "esbuild-plugin-alias": "^0.2.1",
     "json-configure": "0.0.1-beta.1",
+    "openai": "^3.2.1",
     "ora": "^6.1.2",
     "update-notifier": "^6.0.2"
   }

@@ -1,14 +1,14 @@
-import { ChatGPTAPI } from 'chatgpt';
+import { Configuration, OpenAIApi } from 'openai'
 
 class RobotManager {
-  private map: Map<string, ChatGPTAPI> = new Map();
+  private map: Map<string, OpenAIApi> = new Map();
 
   public registerRobot(apiKey: string) {
-    const robot = new ChatGPTAPI({
-      apiKey: apiKey,
-    });
+    const configure = new Configuration({
+      apiKey: apiKey
+    })
+    const robot = new OpenAIApi(configure)
     this.map.set(apiKey, robot);
-
     return robot;
   }
 
