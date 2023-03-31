@@ -13,7 +13,7 @@ specifiers:
   esbuild-plugin-alias: ^0.2.1
   eslint: ^8.22.0
   eslint-config-alloy: ^4.6.2
-  json-configure: 0.0.1-beta.1
+  json-configure: 0.0.1-beta.6
   openai: ^3.2.1
   ora: ^6.1.2
   prettier: ^2.7.1
@@ -32,7 +32,7 @@ dependencies:
   colorette: 2.0.19
   debug: 4.3.4
   esbuild-plugin-alias: 0.2.1
-  json-configure: 0.0.1-beta.1
+  json-configure: 0.0.1-beta.6
   openai: 3.2.1_debug@4.3.4
   ora: 6.1.2
   update-notifier: 6.0.2
@@ -1788,8 +1788,8 @@ packages:
     resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
     dev: false
 
-  /json-configure/0.0.1-beta.1:
-    resolution: {integrity: sha512-70FyLA6iU6yIwHHc+zYLN1GQJ+9ntElDT8/1AbPDbxshrQnxhmXGihgWGKxrsDMfEunVQcslhkrGih30LVOYyg==}
+  /json-configure/0.0.1-beta.6:
+    resolution: {integrity: sha512-xXyAUMOGjwOxtyLfCjcFQpcQU49TMVjHSOfO1wAJ69VFrEbM+O3XgoQiDp4FUjzO5rMTI7flgfEue4NJG+tubw==}
     dependencies:
       '@types/fs-extra': 9.0.13
       '@types/user-home': 2.0.0
