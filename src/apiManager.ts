@@ -6,13 +6,20 @@ import robot from "./robot";
 
 type IOptions = {
   throwError: boolean
+  loggerError?: ((val: unknown) => void) | Boolean;
 }
 
 const defaultOpts: IOptions = {
-  throwError: false
+  throwError: false,
+
+  loggerError: false,
 }
 
 const spinner = ora(blueBright('loading ask response...'));
+
+function isBool(val: unknown): val is Boolean {
+  return typeof val === 'boolean'
+}
 
 type PickTaskOrPromiseReturnValue<T> = 
   T extends (...args: any[]) => Promise<infer R> ? R :
@@ -24,7 +31,7 @@ type PickTaskOrPromiseReturnValue<T> =
 async function executeTask<T 
   extends ((...arg:any) => any | Promise<any>) | Promise<any>
 >(task: T, opts: IOptions = defaultOpts): Promise<PickTaskOrPromiseReturnValue<T> | undefined> {
-  const { throwError } = opts;
+  const { throwError, loggerError } = opts;
   try {
     spinner.start();
     if('then' in task) {
@@ -32,10 +39,22 @@ async function executeTask<T
     }
     const fn = task();
     if('then' in fn) {
-      return await fn();
+      return await fn;
     }
     return fn();
   }catch(e) {
+    
+    if(isBool(loggerError) && loggerError) {
+      spinner.clear();
+      spinner.stop(); 
+      if(e instanceof Error) {
+        logger.error(e.message)
+      }
+    }
+
+    if(!isBool(loggerError) && loggerError) {
+      loggerError(e);
+    }
     if(throwError) {
       throw e;
     }
