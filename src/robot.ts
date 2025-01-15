@@ -6,8 +6,7 @@ class RobotManager {
   public registerRobot(apiKey: string) {
     const configure = {
       apiKey: apiKey,
-      baseUrl: 'https://api.deepseek.com',
-      
+      baseURL: 'https://api.deepseek.com', 
     }
     const robot = new OpenAI(configure)
     this.map.set(apiKey, robot);

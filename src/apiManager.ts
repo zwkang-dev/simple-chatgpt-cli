@@ -80,6 +80,8 @@ class ApiManager {
     }
     robotChecker(robotIns);
 
+    console.log(robotIns, params)
+
     const robotInstance = robotIns!;
     const data = await executeTask(robotInstance.chat.completions.create(params));
     return data?.choices[0].message.content ?? '';

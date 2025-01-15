@@ -11,8 +11,7 @@ export async function ask(askText: string) {
   debugLogger('apiKey: %s', apiKey);
   checkApiKey(apiKey, true);
   const answer = await apiManager.createCompletion(apiKey!, {
-    prompt: askText,
-    max_tokens: 1000,
+    messages: [{ "role": "user", "content": askText }],
     model: "deepseek-chat",
   })
 

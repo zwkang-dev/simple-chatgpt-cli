@@ -15,12 +15,10 @@ export async function conversation(askText: string, opts: {prefixSystem: any} = 
   debugLogger('apiKey: %s', apiKey);
   checkApiKey(apiKey, true);
   const list = getConfig<any[]>(LATEST_CONVERSATION) || [];
-  opts?.prefixSystem && list.unshift(opts.prefixSystem);
+  opts?.prefixSystem && opts?.prefixSystem?.length > 0 && list.unshift(opts.prefixSystem);
   const answer = await apiManager.createCompletion(apiKey!, {
-    messages: [...list, { role: 'user', content: askText}],
-    // max_tokens: 2048,
+    messages: list.concat([{ role: 'user', content: askText}]),
     model: 'deepseek-chat',
-    stream: false
   })
 
   if(typeof answer === 'undefined') {
