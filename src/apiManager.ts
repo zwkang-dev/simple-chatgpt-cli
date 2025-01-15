@@ -79,25 +79,10 @@ class ApiManager {
       robotIns = robot.registerRobot(apiKey);
     }
     robotChecker(robotIns);
-
-    console.log(robotIns, params)
-
     const robotInstance = robotIns!;
     const data = await executeTask(robotInstance.chat.completions.create(params));
     return data?.choices[0].message.content ?? '';
   }
-
-  // public async createChatCompletion(apiKey: string, params: any) {
-  //   let robotIns = null;
-  //   if (apiKey) {
-  //     robotIns = robot.registerRobot(apiKey);
-  //   }
-  //   robotChecker(robotIns);
-
-  //   const robotInstance = robotIns!;
-  //   const data = await executeTask(robotInstance.chat.completions.create(params));
-  //   return data?.choices[0]?.message?.content ?? '';
-  // }
 }
 
 

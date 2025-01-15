@@ -50,7 +50,6 @@ cli
 cli
   .command('store <key> <value>', 'store your key and value')
   .action((key, value) => {
-    console.log(key, value)
     setConfig(key,value);
     logger.success(`success append ${key}`);
   });
