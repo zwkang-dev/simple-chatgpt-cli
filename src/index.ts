@@ -6,7 +6,6 @@ import logger from './logger';
 import updateNotifier from 'update-notifier';
 import { CHAT_GPT_API_KEY } from './constants';
 import { conversation, reset } from './conversation';
-import { listEngines } from './engines';
 
 const notifier = updateNotifier({ pkg: pkgJSON });
 const cli = cac(name);
@@ -68,10 +67,6 @@ cli
   .action(() => {
     logger.success(JSON.stringify(allConfig()));
   });
-
-cli
-  .command('list-engines')
-  .action(listEngines)
 
 cli.version(version);
 cli.help();

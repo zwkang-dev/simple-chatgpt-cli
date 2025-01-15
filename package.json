@@ -78,7 +78,7 @@
     "debug": "^4.3.4",
     "esbuild-plugin-alias": "^0.2.1",
     "json-configure": "0.0.1-beta.6",
-    "openai": "^3.2.1",
+    "openai": "^4.78.1",
     "ora": "^6.1.2",
     "update-notifier": "^6.0.2"
   }

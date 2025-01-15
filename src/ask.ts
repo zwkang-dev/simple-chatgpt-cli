@@ -13,7 +13,7 @@ export async function ask(askText: string) {
   const answer = await apiManager.createCompletion(apiKey!, {
     prompt: askText,
     max_tokens: 1000,
-    model: "text-davinci-003",
+    model: "deepseek-chat",
   })
 
   if(typeof answer === 'undefined') {

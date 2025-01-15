@@ -1,13 +1,15 @@
-import { Configuration, OpenAIApi } from 'openai'
+import OpenAI from 'openai'
 
 class RobotManager {
-  private map: Map<string, OpenAIApi> = new Map();
+  private map: Map<string, OpenAI> = new Map();
 
   public registerRobot(apiKey: string) {
-    const configure = new Configuration({
-      apiKey: apiKey
-    })
-    const robot = new OpenAIApi(configure)
+    const configure = {
+      apiKey: apiKey,
+      baseUrl: 'https://api.deepseek.com',
+      
+    }
+    const robot = new OpenAI(configure)
     this.map.set(apiKey, robot);
     return robot;
   }

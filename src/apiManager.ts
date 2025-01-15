@@ -1,5 +1,4 @@
 import { blueBright } from "colorette";
-import { CreateChatCompletionRequest, CreateCompletionRequest } from "openai";
 import ora from "ora";
 import logger from "./logger";
 import robot from "./robot";
@@ -73,20 +72,8 @@ function robotChecker(robot: unknown) {
 }
 
 class ApiManager {
-  public async listEngines(apiKey?: string) {
-    let robotIns = null;
-    if (apiKey) {
-      robotIns = robot.registerRobot(apiKey);
-    }
 
-    robotChecker(robotIns);
-
-    const robotInstance = robotIns!;
-    const data = await executeTask(robotInstance.listEngines);
-    return data?.data.data;
-  }
-
-  public async createCompletion(apiKey: string, params: CreateCompletionRequest) {
+  public async createCompletion(apiKey: string, params: any) {
     let robotIns = null;
     if (apiKey) {
       robotIns = robot.registerRobot(apiKey);
@@ -94,23 +81,21 @@ class ApiManager {
     robotChecker(robotIns);
 
     const robotInstance = robotIns!;
-    const data = await executeTask(robotInstance.createCompletion(params));
-    const msg = data?.data.choices[0].text;
-    return msg;
+    const data = await executeTask(robotInstance.chat.completions.create(params));
+    return data?.choices[0].message.content ?? '';
   }
 
-  public async createChatCompletion(apiKey: string, params: CreateChatCompletionRequest) {
-    let robotIns = null;
-    if (apiKey) {
-      robotIns = robot.registerRobot(apiKey);
-    }
-    robotChecker(robotIns);
+  // public async createChatCompletion(apiKey: string, params: any) {
+  //   let robotIns = null;
+  //   if (apiKey) {
+  //     robotIns = robot.registerRobot(apiKey);
+  //   }
+  //   robotChecker(robotIns);
 
-    const robotInstance = robotIns!;
-    const data = await executeTask(robotInstance.createChatCompletion(params));
-    const msg = data?.data.choices[0].message?.content;
-    return msg;
-  }
+  //   const robotInstance = robotIns!;
+  //   const data = await executeTask(robotInstance.chat.completions.create(params));
+  //   return data?.choices[0]?.message?.content ?? '';
+  // }
 }
 
 

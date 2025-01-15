@@ -1,4 +1,3 @@
-import debug from 'debug';
 import { green, greenBright, yellow } from 'colorette';
 
 const logger = {

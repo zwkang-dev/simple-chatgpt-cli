@@ -4,22 +4,22 @@ import { getConfig, setConfig } from './config';
 import logger from './logger';
 import debug from 'debug';
 
-import type { ChatCompletionRequestMessage } from 'openai'
 import apiManager from './apiManager';
 
 const LATEST_CONVERSATION = 'latestConversation';
 
 const debugLogger = debug('ask:module');
 
-export async function conversation(askText: string) {
+export async function conversation(askText: string, opts: {prefixSystem: any} = { prefixSystem : []}) {
   const apiKey = getConfig<string | undefined>('CHAT_GPT_API_KEY');
   debugLogger('apiKey: %s', apiKey);
   checkApiKey(apiKey, true);
   const list = getConfig<any[]>(LATEST_CONVERSATION) || [];
-  const answer = await apiManager.createChatCompletion(apiKey!, {
+  opts?.prefixSystem && list.unshift(opts.prefixSystem);
+  const answer = await apiManager.createCompletion(apiKey!, {
     messages: [...list, { role: 'user', content: askText}],
-    max_tokens: 2048,
-    model: 'gpt-3.5-turbo',
+    // max_tokens: 2048,
+    model: 'deepseek-chat',
     stream: false
   })
 
@@ -28,7 +28,7 @@ export async function conversation(askText: string) {
     return;
   }
 
-  setConfig(LATEST_CONVERSATION, [...(getConfig<ChatCompletionRequestMessage[]>(LATEST_CONVERSATION) || []), {
+  setConfig(LATEST_CONVERSATION, [...(getConfig<{role: string, content: string}[]>(LATEST_CONVERSATION) || []), {
     role: 'user',
     content: askText
   }, {
